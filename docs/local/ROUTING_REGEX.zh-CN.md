@@ -28,11 +28,11 @@ re:(?i:.+/(?:glm|gml)[.-]?5[.-]?3-flash)
 
 | Magpie 模式 | 含义 | 备注 |
 | --- | --- | --- |
-| \`*/glm-5.3-flash\` | 任意 Provider 的精确 glm-5.3-flash | Magpie glob；自动忽略大小写，* 可跨 / |
-| \`re:(?i:.+/glm-5\.3-flash)\` | 同一目标的 Go 正则 | 正则必须使用 .+、.* 等；点要写 \. |
-| \`re:(?i:.+/glm-5[.-]3-flash)\` | 允许 glm-5.3-flash、glm-5-3-flash | 不匹配 flashx |
-| \`re:(?i:.+/(?:glm|gml)[.-]?5[.-]?3-flash)\` | 容忍 glm/gml 和多种版本分隔写法 | 误拼 gml 仅在确认需要时加入 |
-| \`re:(?i:(?:zhipu|trae-cn)/glm-5[.-]3-flash)\` | 只匹配两个指定 Provider | 需要 Provider 的真实 ID 正确 |
+| `*/glm-5.3-flash` | 任意 Provider 的精确 glm-5.3-flash | Magpie glob；自动忽略大小写，* 可跨 / |
+| `re:(?i:.+/glm-5\.3-flash)` | 同一目标的 Go 正则 | 正则必须使用 .+、.* 等；点要写 \. |
+| `re:(?i:.+/glm-5[.-]3-flash)` | 允许 glm-5.3-flash、glm-5-3-flash | 不匹配 flashx |
+| `re:(?i:.+/(?:glm|gml)[.-]?5[.-]?3-flash)` | 容忍 glm/gml 和多种版本分隔写法 | 误拼 gml 仅在确认需要时加入 |
+| `re:(?i:(?:zhipu|trae-cn)/glm-5[.-]3-flash)` | 只匹配两个指定 Provider | 需要 Provider 的真实 ID 正确 |
 
 源码中正则编译为：
 
@@ -57,19 +57,19 @@ regexp.Compile("^(?:" + re + ")$")
 
 | 用途 | 可复制的 Magpie 模式 | 说明 |
 | --- | --- | --- |
-| GLM-5.3-Flash，仅点或横杠 | \`re:(?i:.+/glm-5[.-]3-flash)\` | 不含 FlashX、Preview |
-| GLM Flash，容忍 5.3 / 5-3 / 53 和 glm/gml | \`re:(?i:.+/(?:glm|gml)[.-]?5[.-]?3-flash)\` | 命中 glm-5.3-flash、glm-53-flash、gml53-flash；**不含 x** |
-| GLM-5.3-FlashX（单独一组） | \`re:(?i:.+/glm-5[.-]3-flashx)\` | 不含 Flash |
-| GLM-5.3 基础版 | \`re:(?i:.+/glm-5[.-]3)\` | 不含 Flash / FlashX |
-| GPT-5.6 / GPT-5.6-Codex | \`re:(?i:.+/gpt-5[.-]6(?:-codex)?)\` | 仅指定版本，示例命名不表示平台必然提供 |
-| Claude Opus 系列 | \`re:(?i:.+/claude-opus-[0-9]+(?:[.-][0-9]+)*(?:-[0-9]{8})?)\` | 支持版本点、短横线和 8 位日期后缀 |
-| DeepSeek V4.1 Flash | \`re:(?i:.+/deepseek-v4[.-]1-flash)\` | 不含 V4 Pro、FlashX |
-| DeepSeek V4 Pro | \`re:(?i:.+/deepseek-v4-pro)\` | 精确变体 |
-| Grok 4 Fast 系列 | \`re:(?i:.+/grok-4(?:[.-][0-9]+)?-fast(?:-reasoning)?)\` | 允许可选小版本和 reasoning 后缀 |
-| Qwen3.8-Flash（模型 ID 直接就是它时） | \`re:(?i:.+/qwen3[.-]?8-flash)\` | **不匹配** qoder/qfmodel 等别名 ID |
-| Qwen3.8-Flash（含已核对的 Qoder qfmodel） | \`re:(?i:(?:qoder/qfmodel|.+/qwen3[.-]?8-flash))\` | Qoder CN 的实际 key 可能不同，不要未经核实照搬 |
-| 指定 Provider 的 GLM-5.3-Flash | \`re:(?i:(?:zhipu|trae-cn)/glm-5[.-]3-flash)\` | 限制 Provider 范围，避免混入其他来源 |
-| 某个无法辨认的真实模型 ID | \`re:(?i:.+/dfmodel)\` | 仅示意“按真实 ID 精确匹配”，不要仅凭 ID 推断背后型号 |
+| GLM-5.3-Flash，仅点或横杠 | `re:(?i:.+/glm-5[.-]3-flash)` | 不含 FlashX、Preview |
+| GLM Flash，容忍 5.3 / 5-3 / 53 和 glm/gml | `re:(?i:.+/(?:glm|gml)[.-]?5[.-]?3-flash)` | 命中 glm-5.3-flash、glm-53-flash、gml53-flash；**不含 x** |
+| GLM-5.3-FlashX（单独一组） | `re:(?i:.+/glm-5[.-]3-flashx)` | 不含 Flash |
+| GLM-5.3 基础版 | `re:(?i:.+/glm-5[.-]3)` | 不含 Flash / FlashX |
+| GPT-5.6 / GPT-5.6-Codex | `re:(?i:.+/gpt-5[.-]6(?:-codex)?)` | 仅指定版本，示例命名不表示平台必然提供 |
+| Claude Opus 系列 | `re:(?i:.+/claude-opus-[0-9]+(?:[.-][0-9]+)*(?:-[0-9]{8})?)` | 支持版本点、短横线和 8 位日期后缀 |
+| DeepSeek V4.1 Flash | `re:(?i:.+/deepseek-v4[.-]1-flash)` | 不含 V4 Pro、FlashX |
+| DeepSeek V4 Pro | `re:(?i:.+/deepseek-v4-pro)` | 精确变体 |
+| Grok 4 Fast 系列 | `re:(?i:.+/grok-4(?:[.-][0-9]+)?-fast(?:-reasoning)?)` | 允许可选小版本和 reasoning 后缀 |
+| Qwen3.8-Flash（模型 ID 直接就是它时） | `re:(?i:.+/qwen3[.-]?8-flash)` | **不匹配** qoder/qfmodel 等别名 ID |
+| Qwen3.8-Flash（含已核对的 Qoder qfmodel） | `re:(?i:(?:qoder/qfmodel|.+/qwen3[.-]?8-flash))` | Qoder CN 的实际 key 可能不同，不要未经核实照搬 |
+| 指定 Provider 的 GLM-5.3-Flash | `re:(?i:(?:zhipu|trae-cn)/glm-5[.-]3-flash)` | 限制 Provider 范围，避免混入其他来源 |
+| 某个无法辨认的真实模型 ID | `re:(?i:.+/dfmodel)` | 仅示意“按真实 ID 精确匹配”，不要仅凭 ID 推断背后型号 |
 
 ### GLM 容错模式的验证样本
 
@@ -89,21 +89,21 @@ regexp.Compile("^(?:" + re + ")$")
 
 | 家族 | Go RE2 模式（直接贴到 Magpie） | 示例（仅用于说明字符串形态） |
 | --- | --- | --- |
-| GPT | \`re:(?i:.+/gpt[._-][a-z0-9]+(?:[._-][a-z0-9]+)*)\` | gpt-4o、gpt-5.6、gpt-5.6-codex |
-| OpenAI o 系列 | \`re:(?i:.+/o[0-9]+(?:[-._](?:mini|pro|high|medium))?)\` | o3、o4-mini |
-| Claude（Opus/Sonnet/Haiku） | \`re:(?i:.+/claude[-._](?:opus|sonnet|haiku)[-._][0-9]+(?:[.-][0-9]+)*(?:-[0-9]{8})?)\` | claude-opus-5.5、claude-sonnet-4-5 |
-| DeepSeek | \`re:(?i:.+/deepseek[._-][a-z0-9]+(?:[._-][a-z0-9]+)*)\` | deepseek-v4-pro、deepseek-r1 |
-| GLM | \`re:(?i:.+/glm(?:[._-]?[a-z0-9]+)+)\` | glm-5.3、glm-5.3-flash、glm-5.3-flashx |
-| Grok | \`re:(?i:.+/grok(?:[._-]?[a-z0-9]+)+)\` | grok-4、grok-code-fast-1 |
-| Gemini | \`re:(?i:.+/gemini[._-][a-z0-9]+(?:[._-][a-z0-9]+)*)\` | gemini-2.5-pro |
-| Qwen | \`re:(?i:.+/qwen[0-9a-z._-]+)\` | qwen3.8-flash、qwen3-235b |
-| Kimi | \`re:(?i:.+/kimi(?:[._-][a-z0-9]+)+)\` | kimi-k3、kimi-k2.5 |
-| MiniMax | \`re:(?i:.+/minimax[._-]?[a-z0-9]+(?:[._-][a-z0-9]+)*)\` | minimax-m2.7 |
-| Step | \`re:(?i:.+/step[._-][0-9]+(?:[._-][a-z0-9]+)*)\` | step-5-preview |
-| Llama | \`re:(?i:.+/llama[._-]?[0-9]+(?:[._-][a-z0-9]+)*)\` | llama-4-maverick |
-| Mistral | \`re:(?i:.+/mistral(?:[._-][a-z0-9]+)+)\` | mistral-large |
-| ERNIE | \`re:(?i:.+/ernie(?:[._-][a-z0-9]+)+)\` | ernie-4.5 |
-| Doubao | \`re:(?i:.+/doubao(?:[._-][a-z0-9]+)+)\` | doubao-seed-1.6 |
+| GPT | `re:(?i:.+/gpt[._-][a-z0-9]+(?:[._-][a-z0-9]+)*)` | gpt-4o、gpt-5.6、gpt-5.6-codex |
+| OpenAI o 系列 | `re:(?i:.+/o[0-9]+(?:[-._](?:mini|pro|high|medium))?)` | o3、o4-mini |
+| Claude（Opus/Sonnet/Haiku） | `re:(?i:.+/claude[-._](?:opus|sonnet|haiku)[-._][0-9]+(?:[.-][0-9]+)*(?:-[0-9]{8})?)` | claude-opus-5.5、claude-sonnet-4-5 |
+| DeepSeek | `re:(?i:.+/deepseek[._-][a-z0-9]+(?:[._-][a-z0-9]+)*)` | deepseek-v4-pro、deepseek-r1 |
+| GLM | `re:(?i:.+/glm(?:[._-]?[a-z0-9]+)+)` | glm-5.3、glm-5.3-flash、glm-5.3-flashx |
+| Grok | `re:(?i:.+/grok(?:[._-]?[a-z0-9]+)+)` | grok-4、grok-code-fast-1 |
+| Gemini | `re:(?i:.+/gemini[._-][a-z0-9]+(?:[._-][a-z0-9]+)*)` | gemini-2.5-pro |
+| Qwen | `re:(?i:.+/qwen[0-9a-z._-]+)` | qwen3.8-flash、qwen3-235b |
+| Kimi | `re:(?i:.+/kimi(?:[._-][a-z0-9]+)+)` | kimi-k3、kimi-k2.5 |
+| MiniMax | `re:(?i:.+/minimax[._-]?[a-z0-9]+(?:[._-][a-z0-9]+)*)` | minimax-m2.7 |
+| Step | `re:(?i:.+/step[._-][0-9]+(?:[._-][a-z0-9]+)*)` | step-5-preview |
+| Llama | `re:(?i:.+/llama[._-]?[0-9]+(?:[._-][a-z0-9]+)*)` | llama-4-maverick |
+| Mistral | `re:(?i:.+/mistral(?:[._-][a-z0-9]+)+)` | mistral-large |
+| ERNIE | `re:(?i:.+/ernie(?:[._-][a-z0-9]+)+)` | ernie-4.5 |
+| Doubao | `re:(?i:.+/doubao(?:[._-][a-z0-9]+)+)` | doubao-seed-1.6 |
 
 **以上只是一组字符匹配模板**；模型是否存在、是否可用、是否同能力，必须以当前 Provider 返回的实际 ID 和元数据为准。有的供应商把真实模型叫作 qfmodel、dfmodel 或其他内部键，厂商家族正则根本不会命中它；请添加已验证的精确 ID 或人工成员，不要按 displayName 猜测。
 
@@ -111,12 +111,12 @@ regexp.Compile("^(?:" + re + ")$")
 
 | 目的 | 模式 |
 | --- | --- |
-| 只要 glm-5.3-flash，排除 flashx | \`re:(?i:.+/glm-5[.-]3-flash)\` |
-| Flash 与 FlashX **都要**（确实希望混用时） | \`re:(?i:.+/glm-5[.-]3-flashx?)\` |
-| GLM Flash 或 DeepSeek V4 Pro | \`re:(?i:.+/(?:glm-5[.-]3-flash|deepseek-v4-pro))\` |
-| 仅 WorkBuddy 的 DeepSeek V4 Pro | \`re:(?i:workbuddy/deepseek-v4-pro)\` |
-| 只匹配最后一段模型名，允许多级路径 | \`re:(?i:.+/glm-5[.-]3-flash)\` |
-| 不用正则、直接精确名称 | \`*/glm-5.3-flash\` |
+| 只要 glm-5.3-flash，排除 flashx | `re:(?i:.+/glm-5[.-]3-flash)` |
+| Flash 与 FlashX **都要**（确实希望混用时） | `re:(?i:.+/glm-5[.-]3-flashx?)` |
+| GLM Flash 或 DeepSeek V4 Pro | `re:(?i:.+/(?:glm-5[.-]3-flash|deepseek-v4-pro))` |
+| 仅 WorkBuddy 的 DeepSeek V4 Pro | `re:(?i:workbuddy/deepseek-v4-pro)` |
+| 只匹配最后一段模型名，允许多级路径 | `re:(?i:.+/glm-5[.-]3-flash)` |
+| 不用正则、直接精确名称 | `*/glm-5.3-flash` |
 
 Go RE2 没有否定先行断言。严格写明允许的后缀，比试图“匹配所有但排除 x”更安全。
 
@@ -125,7 +125,7 @@ Go RE2 没有否定先行断言。严格写明允许的后缀，比试图“匹�
 仅获取当前 API key 可见的模型 ID（不要把 key 本身粘贴进命令或文档）：
 
 ~~~bash
-curl -fsS 'https://api.magpie.rontian.top/v1/models' \
+curl -fsS 'https://YOUR_MAGPIE_HOST/v1/models' \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   | jq -r '.data[].id' | sort -u
 ~~~
